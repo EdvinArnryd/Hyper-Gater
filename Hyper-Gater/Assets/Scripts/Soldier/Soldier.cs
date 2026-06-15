@@ -27,7 +27,8 @@ public class Soldier : MonoBehaviour
     IEnumerator DestroyBullet(Bullet bullet)
     {
         yield return new WaitForSeconds(_bulletDuration);
-        Destroy(bullet.gameObject);
+        if(bullet)
+            Destroy(bullet.gameObject);
     }
 
 }
