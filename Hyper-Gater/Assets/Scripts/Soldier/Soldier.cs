@@ -15,6 +15,7 @@ public class Soldier : MonoBehaviour
         StartCoroutine(SpawnBullet());
     }
 
+    // Important to use pooling here
     IEnumerator SpawnBullet()
     {
         Bullet bullet = Instantiate(_bulletPrefab);

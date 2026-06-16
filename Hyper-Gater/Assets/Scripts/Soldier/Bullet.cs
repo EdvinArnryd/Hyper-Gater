@@ -8,11 +8,24 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.position += new Vector3(0,0,_bulletSpeed * Time.deltaTime);
+        transform.position += transform.forward * _bulletSpeed * Time.deltaTime;
     }
 
-    public int GetDamage()
+    void OnTriggerEnter(Collider other)
     {
-        return _damage;
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<Health>().TakeDamage(_damage);
+
+            // Important to use pooling here
+            Destroy(gameObject);
+        }
+        else if(other.gameObject.CompareTag("Upgrade"))
+        {
+            other.gameObject.GetComponent<Upgrade>().Hit();
+
+            // Important to use pooling here
+            Destroy(gameObject);
+        }
     }
 }
