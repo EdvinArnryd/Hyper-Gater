@@ -1,18 +1,26 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private GameObject _bulletPoint;
-
     [SerializeField] private float _reloadSpeed = 2;
     [SerializeField] private float _bulletDuration = 5;
 
     void Start()
     {
         StartCoroutine(SpawnBullet());
+    }
+
+    void OnEnable()
+    {
+        WeaponUpgrade.OnUpgradeTriggered += UpgradeReloadSpeed;
+    }
+
+    void OnDisable()
+    {
+        WeaponUpgrade.OnUpgradeTriggered -= UpgradeReloadSpeed;
     }
 
     // Important to use pooling here
@@ -30,6 +38,17 @@ public class Soldier : MonoBehaviour
         yield return new WaitForSeconds(_bulletDuration);
         if(bullet)
             Destroy(bullet.gameObject);
+    }
+
+    /// <summary>
+    /// Multiplies the reloadSpeed using value from 0 - 1 (0% - 100%)
+    /// <para>0.7f should equal 70% off</para>
+    /// </summary>
+    /// <param name="multiplier"></param>
+    public void UpgradeReloadSpeed(float multiplier)
+    {
+        _reloadSpeed *= 1 - multiplier;
+        print("UPGRADE!");
     }
 
 }

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public class SoldierUpgrade : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private int _startValue = 10;

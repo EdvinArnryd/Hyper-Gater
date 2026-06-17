@@ -157,5 +157,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 6526492604146028641, guid: a267a3ddbf9a6064fa4c157dc0ce785f, type: 3}
   _bulletPoint: {fileID: 4245253157453384682}
-  _reloadSpeed: 2
+  _reloadSpeed: 0.5
   _bulletDuration: 5

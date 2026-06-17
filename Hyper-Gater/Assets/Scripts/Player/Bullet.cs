@@ -20,9 +20,16 @@ public class Bullet : MonoBehaviour
             // Important to use pooling here
             Destroy(gameObject);
         }
-        else if(other.gameObject.CompareTag("Upgrade"))
+        else if(other.gameObject.CompareTag("SoldierUpgrade"))
         {
-            other.gameObject.GetComponent<Upgrade>().Hit();
+            other.gameObject.GetComponent<SoldierUpgrade>().Hit();
+
+            // Important to use pooling here
+            Destroy(gameObject);
+        }
+        else if(other.gameObject.CompareTag("WeaponUpgrade"))
+        {
+            other.gameObject.GetComponent<WeaponUpgrade>().Hit();
 
             // Important to use pooling here
             Destroy(gameObject);
