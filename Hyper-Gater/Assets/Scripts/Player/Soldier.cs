@@ -15,12 +15,12 @@ public class Soldier : MonoBehaviour
 
     void OnEnable()
     {
-        WeaponUpgrade.OnUpgradeTriggered += UpgradeReloadSpeed;
+        WeaponUpgrade.OnWeaponUpgrade += UpgradeReloadSpeed;
     }
 
     void OnDisable()
     {
-        WeaponUpgrade.OnUpgradeTriggered -= UpgradeReloadSpeed;
+        WeaponUpgrade.OnWeaponUpgrade -= UpgradeReloadSpeed;
     }
 
     // Important to use pooling here
@@ -48,7 +48,6 @@ public class Soldier : MonoBehaviour
     public void UpgradeReloadSpeed(float multiplier)
     {
         _reloadSpeed *= 1 - multiplier;
-        print("UPGRADE!");
     }
 
 }

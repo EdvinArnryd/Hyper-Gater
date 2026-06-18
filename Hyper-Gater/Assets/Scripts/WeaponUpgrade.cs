@@ -8,7 +8,7 @@ public class WeaponUpgrade : MonoBehaviour
     [SerializeField] private int _startValue = 50;
     [SerializeField] private float _upgradeMultiplier = 0.1f; // 10%
 
-    public static event Action<float> OnUpgradeTriggered;
+    public static event Action<float> OnWeaponUpgrade;
     private int _currentValue;
 
     void Start()
@@ -23,7 +23,7 @@ public class WeaponUpgrade : MonoBehaviour
         UpdateText();
         if(_currentValue <= 0)
         {
-            OnUpgradeTriggered?.Invoke(_upgradeMultiplier);
+            OnWeaponUpgrade?.Invoke(_upgradeMultiplier);
             Destroy(gameObject);
         }
     }
