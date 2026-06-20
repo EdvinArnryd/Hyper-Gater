@@ -6,6 +6,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     private InputSystem_Actions _input;
     private Vector2 _mouseScreenPos;
+    [SerializeField] private float _minX = -10f;
+    [SerializeField] private float _maxX = 10f;
 
     void Awake()
     {
@@ -26,10 +28,9 @@ public class Controller : MonoBehaviour
         Vector3 mouseWorld = _mainCamera.ScreenToWorldPoint(
             new Vector3(_mouseScreenPos.x, _mouseScreenPos.y, _mainCamera.transform.position.z * -1));
 
-        // float targetX = mouseWorld.x;
-        // float newX = Mathf.MoveTowards(transform.position.x, targetX, 5 * Time.deltaTime);
+        float clampedX = Mathf.Clamp(mouseWorld.x, _minX, _maxX);
 
-        transform.position = new Vector3(mouseWorld.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
     private void OnEnable()
@@ -50,5 +51,6 @@ public class Controller : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         _mouseScreenPos = context.ReadValue<Vector2>();
+        print("Updated OnLook");
     }
 }
