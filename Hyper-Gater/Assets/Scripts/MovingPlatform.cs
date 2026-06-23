@@ -6,11 +6,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private int _rows = 5;
     [SerializeField] private int _cols = 5;
     private float _widthMax;
-    private float _widthMin = 0;
     private float _heightMax;
-    private float _heightMin = 0;
-
-    private Vector3 _startPoint;
 
     void OnDrawGizmos()
     {
@@ -22,8 +18,6 @@ public class MovingPlatform : MonoBehaviour
         Vector3 boundsMax = GetComponent<Renderer>().bounds.max;
         
         Vector3 firstRay = boundsMin + new Vector3(0,transform.position.y * 2,0);
-        // Gizmos.DrawRay(firstRay , new Vector3(_widthMax, 0 ,0));
-        // Gizmos.DrawRay(firstRay , new Vector3(0, 0 ,_heightMax));
 
         // Draw Cols
         for (int i = 0; i <= _cols; i++)
