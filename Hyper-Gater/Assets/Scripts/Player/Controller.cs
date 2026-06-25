@@ -13,8 +13,8 @@ public class Controller : MonoBehaviour
     {
         _input = new InputSystem_Actions();
 
-        _input.Player.Move.performed += OnMove;
-        _input.Player.Move.canceled += OnMove;
+        // _input.Player.Move.performed += OnMove;
+        // _input.Player.Move.canceled += OnMove;
         _input.Player.MousePosition.performed += OnLook;
 
         if(_mainCamera == null)
@@ -43,14 +43,8 @@ public class Controller : MonoBehaviour
         _input.Player.Disable();       
     }
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        
-    }
-
     public void OnLook(InputAction.CallbackContext context)
     {
         _mouseScreenPos = context.ReadValue<Vector2>();
-        print("Updated OnLook");
     }
 }
