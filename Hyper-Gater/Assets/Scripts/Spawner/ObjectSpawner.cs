@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private List<GameObjectRow> _spawnList;
     [SerializeField] private float _enemySpawnCooldown = 0.5f;
     [SerializeField] private float _newObjectSpawnCooldown = 1f;
+    [SerializeField] private List<Transform> _spawnPositions;
     void Start()
     {
         StartCoroutine(SpawnObjects());
@@ -21,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour
             {
                 GameObject instantiated = Instantiate(rowObject);
                 
-                instantiated.transform.position = transform.position;
+                instantiated.transform.position = _spawnPositions[Random.Range(0, _spawnPositions.Count)].transform.position;
                 instantiated.transform.rotation = transform.rotation;
 
 
