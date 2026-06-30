@@ -17,22 +17,23 @@ public class Bullet : MonoBehaviour
         {
             other.gameObject.GetComponent<Health>().TakeDamage(_damage);
 
-            // Important to use pooling here
-            Destroy(gameObject);
+            ObjectPool.Instance.DeSpawn(gameObject);
         }
         else if(other.gameObject.CompareTag("SoldierUpgrade"))
         {
             other.gameObject.GetComponent<SoldierUpgrade>().Hit();
 
-            // Important to use pooling here
-            Destroy(gameObject);
+            ObjectPool.Instance.DeSpawn(gameObject);
         }
         else if(other.gameObject.CompareTag("WeaponUpgrade"))
         {
             other.gameObject.GetComponent<WeaponUpgrade>().Hit();
 
-            // Important to use pooling here
-            Destroy(gameObject);
+            ObjectPool.Instance.DeSpawn(gameObject);
+        }
+        else if(other.gameObject.CompareTag("Wall"))
+        {
+            ObjectPool.Instance.DeSpawn(gameObject);
         }
     }
 }

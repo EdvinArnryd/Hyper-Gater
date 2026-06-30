@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
-    [SerializeField] private Bullet _bulletPrefab;
+    // [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private GameObject _bulletPoint;
     [SerializeField] private float _reloadSpeed = 2;
     [SerializeField] private float _bulletDuration = 5;
@@ -26,18 +26,12 @@ public class Soldier : MonoBehaviour
     // Important to use pooling here
     IEnumerator SpawnBullet()
     {
-        Bullet bullet = Instantiate(_bulletPrefab);
-        bullet.transform.position = _bulletPoint.transform.position;
-        StartCoroutine(DestroyBullet(bullet));
+        // Bullet bullet = Instantiate(_bulletPrefab);
+        GameObject bullet = ObjectPool.Instance.Spawn(_bulletPoint.transform.position);
+
+        // bullet.transform.position = _bulletPoint.transform.position;
         yield return new WaitForSeconds(_reloadSpeed);
         StartCoroutine(SpawnBullet());
-    }
-
-    IEnumerator DestroyBullet(Bullet bullet)
-    {
-        yield return new WaitForSeconds(_bulletDuration);
-        if(bullet)
-            Destroy(bullet.gameObject);
     }
 
     /// <summary>
